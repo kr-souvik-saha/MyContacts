@@ -1,0 +1,22 @@
+const mongoose = require("mongoose");
+
+// Which and what fields will be in the collection will defined in this func
+const userSchema = mongoose.Schema({
+    username: {
+        type: String,
+        required: [true, "Please add user name"],
+    },
+    email: {
+        type: String,
+        required: [true, "Please add user email"],
+        unique: [true, "Email address already taken"]
+    },
+    password: {
+        type: String,
+        required: [true, "Please add password"],
+    },
+}, {
+    timestamps: true,
+});
+
+module.exports = mongoose.model("User", userSchema);
